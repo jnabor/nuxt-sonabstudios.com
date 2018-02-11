@@ -1,100 +1,126 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          router
-          :to="item.to"
-          :key="i"
-          v-for="(item, i) in items"
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-content>
+<v-app>
+
+  <v-toolbar
+    color="yellow darken-1"
+    light dense>
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-spacer></v-spacer>
+    <v-btn icon>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
+  </v-toolbar>
+
+  <v-content>
       <v-container>
-        <nuxt />
+        <v-layout row wrap justify-center>
+
+          <v-flex xs12 md5>
+            <div class="text-xs-center">
+              <img class="elevation-0 mt-5 mb-3 logo" src="sonabstudios.png">
+              <div class="headline"><span style="font-weight:bold">Sonab</span>Studios</div>
+              <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive Real-Time Web and Mobile Applications</div>
+              <v-layout row justify-center>
+                <v-btn flat class="mt-2" color="blue" dark>Portfolio</v-btn>
+                <v-btn flat class="mt-2" color="green" dark>About</v-btn>
+                <v-btn flat class="mt-2" color="indigo" dark>Contact</v-btn>
+              </v-layout>
+            </div>
+          </v-flex>
+
+          <v-flex xs12 md5 offset-md1>
+            <div v-for="post in posts" :key="post.title">
+              <v-card class="my-3" hover >
+                <v-card-media
+                  class="white--text"
+                  height="170px"
+                  :src="post.imgUrl">
+                  <v-container fill-height fluid>
+                    <v-layout>
+                      <v-flex xs12 align-end d-flex>
+                        <span class="headline">{{ post.title }}</span>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card-media>
+                <v-card-text>
+                  {{ post.content }}
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn icon class="red--text">
+                    <v-icon medium>fa-reddit</v-icon>
+                  </v-btn>
+                  <v-btn icon class="light-blue--text">
+                    <v-icon medium>fa-twitter</v-icon>
+                  </v-btn>
+                  <v-btn icon class="blue--text text--darken-4">
+                    <v-icon medium>fa-facebook</v-icon>
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn flat class="blue--text">Read More</v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+          </v-flex>
+        </v-layout>
       </v-container>
-    </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
-  </v-app>
+  </v-content>
+
+  <v-footer class="pa-2 footer-fixed" dark color="grey lighten-1">
+    <v-layout justify-center>
+    <div>Jayson Nabor © 2018</div>
+    </v-layout>
+  </v-footer>
+
+</v-app>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
+export default {
+  el: '#app',
+  data () {
+    return {
+      title: 'Your Logo',
+      posts: [
+        {
+          title: 'Progressive Web Applications',
+          content: 'Loads instantly and never shows the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
+          imgUrl: '/img/progressive.jpeg'
+        },
+        {
+          title: 'Internet of Things',
+          content: 'A system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.',
+          imgUrl: '/img/raspberry.jpeg'
+        },
+        {
+          title: 'Technology Stack',
+          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server side.',
+          imgUrl: '/img/techstack.jpeg'
+        }
+      ]
     }
   }
+}
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+
+.logo {
+  max-height: 150px;
+}
+
+</style>

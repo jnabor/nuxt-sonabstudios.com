@@ -1,43 +1,126 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <logo/>
-        <vuetify-logo/>
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+<v-app>
+
+  <v-toolbar
+    color="yellow darken-1"
+    light dense>
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-spacer></v-spacer>
+    <v-btn icon>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
+  </v-toolbar>
+
+  <v-content>
+      <v-container>
+        <v-layout row wrap justify-center>
+
+          <v-flex xs12 md5>
+            <div class="text-xs-center">
+              <img class="elevation-0 mt-5 mb-3 logo" src="sonabstudios.png">
+              <div class="headline"><span style="font-weight:bold">Sonab</span>Studios</div>
+              <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive Real-Time Web and Mobile Applications</div>
+              <v-layout row justify-center>
+                <v-btn flat class="mt-2" color="blue" dark>Portfolio</v-btn>
+                <v-btn flat class="mt-2" color="green" dark>About</v-btn>
+                <v-btn flat class="mt-2" color="indigo" dark>Contact</v-btn>
+              </v-layout>
+            </div>
+          </v-flex>
+
+          <v-flex xs12 md5 offset-md1>
+            <div v-for="post in posts" :key="post.title">
+              <v-card class="my-3" hover >
+                <v-card-media
+                  class="white--text"
+                  height="170px"
+                  :src="post.imgUrl">
+                  <v-container fill-height fluid>
+                    <v-layout>
+                      <v-flex xs12 align-end d-flex>
+                        <span class="headline">{{ post.title }}</span>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card-media>
+                <v-card-text>
+                  {{ post.content }}
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn icon class="red--text">
+                    <v-icon medium>fa-reddit</v-icon>
+                  </v-btn>
+                  <v-btn icon class="light-blue--text">
+                    <v-icon medium>fa-twitter</v-icon>
+                  </v-btn>
+                  <v-btn icon class="blue--text text--darken-4">
+                    <v-icon medium>fa-facebook</v-icon>
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn flat class="blue--text">Read More</v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+  </v-content>
+
+  <v-footer class="pa-2 footer-fixed" dark color="grey lighten-1">
+    <v-layout justify-center>
+    <div>Jayson Nabor © 2018</div>
+    </v-layout>
+  </v-footer>
+
+</v-app>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  el: '#app',
+  data () {
+    return {
+      title: 'Your Logo',
+      posts: [
+        {
+          title: 'Progressive Web Applications',
+          content: 'Loads instantly and never shows the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
+          imgUrl: '/img/progressive.jpeg'
+        },
+        {
+          title: 'Internet of Things',
+          content: 'A system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.',
+          imgUrl: '/img/raspberry.jpeg'
+        },
+        {
+          title: 'Technology Stack',
+          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server side.',
+          imgUrl: '/img/techstack.jpeg'
+        }
+      ]
+    }
   }
 }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+
+.logo {
+  max-height: 150px;
+}
+
+</style>
