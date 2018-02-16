@@ -1,83 +1,62 @@
 <template>
-<v-app>
-
-  <v-toolbar
-    color="yellow darken-1"
-    light dense>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-spacer></v-spacer>
-    <v-btn icon>
-      <v-icon>more_vert</v-icon>
-    </v-btn>
-  </v-toolbar>
-
   <v-content>
-      <v-container>
-        <v-layout row wrap justify-center>
+    <v-container>
+      <v-layout row wrap justify-center>
 
-          <v-flex xs12 md5>
-            <div class="text-xs-center">
-              <img class="elevation-0 mt-5 mb-3 logo" src="sonabstudios.png">
-              <div class="headline"><span style="font-weight:bold">Sonab</span>Studios</div>
+        <v-flex xs12 md5>
+          <div class="text-xs-center">
+            <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png">
+              <div class="headline"><span style="font-weight:bold">Sonab</span>Studios&trade;</div>
               <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive Real-Time Web and Mobile Applications</div>
               <v-layout row justify-center>
                 <v-btn flat class="mt-2" color="blue" dark>Portfolio</v-btn>
                 <v-btn flat class="mt-2" color="green" dark>About</v-btn>
                 <v-btn flat class="mt-2" color="indigo" dark>Contact</v-btn>
               </v-layout>
-            </div>
-          </v-flex>
+          </div>
+        </v-flex>
 
-          <v-flex xs12 md5 offset-md1>
-            <div v-for="post in posts" :key="post.title">
-              <v-card class="my-3" hover >
-                <v-card-media
-                  class="white--text"
-                  height="170px"
-                  :src="post.imgUrl">
-                  <v-container fill-height fluid>
-                    <v-layout>
-                      <v-flex xs12 align-end d-flex>
-                        <span class="headline">{{ post.title }}</span>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-card-text>
+        <v-flex xs12 md5 offset-md1>
+          <div v-for="post in posts" :key="post.title">
+            <v-card class="my-3" hover >
+              <v-card-media
+                class="white--text"
+                height="170px"
+                :src="post.imgUrl">
+                <v-container fill-height fluid>
+                  <v-layout>
+                    <v-flex xs12 align-end d-flex>
+                      <span class="headline">{{ post.title }}</span>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-media>
+              <v-card-text>
                   {{ post.content }}
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn icon class="red--text">
-                    <v-icon medium>fa-reddit</v-icon>
-                  </v-btn>
-                  <v-btn icon class="light-blue--text">
-                    <v-icon medium>fa-twitter</v-icon>
-                  </v-btn>
-                  <v-btn icon class="blue--text text--darken-4">
-                    <v-icon medium>fa-facebook</v-icon>
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-btn flat class="blue--text">Read More</v-btn>
-                </v-card-actions>
-              </v-card>
-            </div>
-          </v-flex>
-        </v-layout>
-      </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn icon class="red--text">
+                  <v-icon medium>fa-reddit</v-icon>
+                </v-btn>
+                <v-btn icon class="light-blue--text">
+                  <v-icon medium>fa-twitter</v-icon>
+                </v-btn>
+                <v-btn icon class="blue--text text--darken-4">
+                  <v-icon medium>fa-facebook</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn flat class="blue--text">Read More</v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-content>
-
-  <v-footer class="pa-2 footer-fixed" dark color="grey lighten-1">
-    <v-layout justify-center>
-    <div>Jayson Nabor © 2018</div>
-    </v-layout>
-  </v-footer>
-
-</v-app>
 </template>
 
 <script>
 export default {
-  el: '#app',
   data () {
     return {
       title: 'Your Logo',
