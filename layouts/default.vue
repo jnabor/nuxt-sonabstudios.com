@@ -7,7 +7,7 @@
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-spacer></v-spacer>
     <v-btn icon class="white--text" onclick="location.href='https://github.com/sonabstudios';">
-      <img src="/github.png">
+      <img class="github" src="/github64.png">
     </v-btn>
   </v-toolbar>
 
@@ -46,8 +46,8 @@ li {
   margin: 0 10px;
 }
 
-.logo {
-  max-height: 150px;
+.github {
+  max-height: 32px;
 }
 
 </style>
