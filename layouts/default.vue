@@ -2,11 +2,11 @@
 <v-app>
 
   <v-toolbar
-    color="yellow darken-1"
-    light dense>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
+    color="grey lighten-1"
+    light class="elevation-0" dense>
+
     <v-spacer></v-spacer>
-    <v-btn icon class="white--text" onclick="location.href='https://github.com/sonabstudios';">
+    <v-btn icon small class="white--text" onclick="location.href='https://github.com/sonabstudios';">
       <img class="github" src="/github64.png">
     </v-btn>
   </v-toolbar>
@@ -25,10 +25,10 @@
 <script>
 export default {
     methods: {
-    navHome: function () {
-      router.push('/home')
-    },
+      navHome: function () {
+        router.push('/home')
       }
+    }
 
 }
 </script>

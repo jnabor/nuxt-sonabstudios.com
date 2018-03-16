@@ -7,12 +7,16 @@
           <div class="text-xs-center">
             <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png">
               <div class="headline"><span style="font-weight:bold">Sonab</span>Studios&trade;</div>
-              <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive Real-Time Web and Mobile Applications</div>
+              <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive, Serverless, Scalable APIs and Applications</div>
               <v-layout row justify-center>
-                <v-btn flat class="mt-2" color="blue" dark>Portfolio</v-btn>
-                <v-btn flat class="mt-2" color="green" dark>About</v-btn>
-                <v-btn flat class="mt-2" color="indigo" dark>Contact</v-btn>
+                <v-btn flat class="mt-2" @click="contact = false" >About</v-btn>
+                <v-btn flat class="mt-2" @click="contact = true">Contact</v-btn>
               </v-layout>
+          </div>
+          <div v-if="contact">
+            <app-contact>
+
+            </app-contact>
           </div>
         </v-flex>
 
@@ -56,9 +60,14 @@
 </template>
 
 <script>
+import contact from './contact'
 export default {
+  components: {
+    'app-contact': contact
+  },
   data () {
     return {
+      contact: false,
       title: 'Your Logo',
       posts: [
         {
