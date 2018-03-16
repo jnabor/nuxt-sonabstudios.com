@@ -2,17 +2,17 @@
   <v-container grid-list-md class="mt-4">
     <v-layout row wrap justify-center>
       <v-flex xs12>
-        <v-card class="pa-4 elevation-0">
+        <v-card class="pa-4 elevation-0 transparent">
           <v-form v-model="valid">
             <v-text-field
               label="Name"
-              v-model="model.name"
+              v-model="model.fromName"
               :rules="nameRules"
               required>
             </v-text-field>
             <v-text-field
               label="E-mail"
-              v-model="model.from"
+              v-model="model.fromEmail"
               :rules="emailRules"
               required>
             </v-text-field>
@@ -31,9 +31,10 @@
             </v-text-field>
             <v-btn
               block
+              color="primary"
               @click.native="onPost()"
               :disabled="!valid"
-              class="mt-2 mb-4">
+              class="mt-2 mb-2">
               SEND
             </v-btn>
           </v-form>
@@ -47,7 +48,7 @@
 export default {
   data () {
     return {
-      apiUrl: '',
+      apiUrl: 'https://i6ycatp01h.execute-api.us-east-1.amazonaws.com/prod/ses-sendmail',
       valid: false,
       model: {
         to: 'sonabstudios@gmail.com',
@@ -57,10 +58,10 @@ export default {
         fromEmail: ''
       },
       nameRules: [
-        (v) => !!v || 'Name is required'
+        (v) => !!v || 'Your name is required'
       ],
       emailRules: [
-        (v) => !!v || 'E-mail is required',
+        (v) => !!v || 'Your email is required',
         (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
       messageRules: [
@@ -76,19 +77,25 @@ export default {
   methods: {
     onPost: function () {
       console.log('sending post request to ' + this.apiUrl)
-      var xhr = new XMLHttpRequest()
+      let xhr = new XMLHttpRequest()
       xhr.open('POST', this.apiUrl)
       xhr.onreadystatechange = (event) => {
         console.log(event.target.response)
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
-      xhr.send(JSON.stringify({
-        "to": "",
+      let msg = JSON.stringify({
+        "to": "sonabstudios@gmail.com",
         "body": this.model.body,
         "subject": this.model.subject,
         "fromname": this.model.fromName,
-        "fromemail": this.fromEmail
-      }))
+        "fromemail": this.model.fromEmail
+      })
+      xhr.send(msg)
+
+      this.model.body = ''
+      this.model.subject = ''
+      this.model.fromName = ''
+      this.model.fromEmail = ''
     }
   }
 

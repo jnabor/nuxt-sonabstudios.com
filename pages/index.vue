@@ -2,24 +2,21 @@
   <v-content>
     <v-container>
       <v-layout row wrap justify-center>
-
         <v-flex xs12 md5>
           <div class="text-xs-center">
             <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png">
               <div class="headline"><span style="font-weight:bold">Sonab</span>Studios&trade;</div>
               <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive, Serverless, Scalable APIs and Applications</div>
               <v-layout row justify-center>
-                <v-btn flat class="mt-2" @click="contact = false" >About</v-btn>
-                <v-btn flat class="mt-2" @click="contact = true">Contact</v-btn>
+                <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn>
+                <v-btn flat class="mt-2" @click="contactActivate()" :color="contactColor">Contact</v-btn>
               </v-layout>
           </div>
           <div v-if="contact">
             <app-contact>
-
             </app-contact>
           </div>
         </v-flex>
-
         <v-flex xs12 md5 offset-md1>
           <div v-for="post in posts" :key="post.title">
             <v-card class="my-3" hover >
@@ -67,7 +64,10 @@ export default {
   },
   data () {
     return {
+      about: false,
       contact: false,
+      aboutColor: '',
+      contactColor: '',
       title: 'Your Logo',
       posts: [
         {
@@ -86,6 +86,20 @@ export default {
           imgUrl: '/img/techstack.jpeg'
         }
       ]
+    }
+  },
+  methods: {
+    aboutActivate: function () {
+      this.contact = false
+      this.about = true
+      this.aboutColor = 'h_active'
+      this.contactColor = ''
+    },
+    contactActivate: function () {
+      this.contact = true
+      this.about = false
+      this.aboutColor = ''
+      this.contactColor = 'h_active'
     }
   }
 }
