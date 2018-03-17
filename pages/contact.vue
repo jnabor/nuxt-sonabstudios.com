@@ -7,12 +7,16 @@
             <v-toolbar-title>Send Email</v-toolbar-title>
           </v-toolbar>
           <v-card-text class="pa-4">
-          <v-alert outline color="success" dismissible icon="check_circle" :value="true">
-            Email sent to SonabStudios&trade;
-          </v-alert>
-          <v-alert outline color="error" dismissible icon="check_circle" :value="true">
-            Email not sent to SonabStudios&trade;
-          </v-alert>
+          <transition appear name="fadeout">
+            <v-alert v-if="showsuccess" outline type="success" class="mb-3" :value="true">
+              Email sent to SonabStudios&trade;
+            </v-alert>
+          </transition>
+          <transition appear name="fadeout">
+            <v-alert v-if="showerror" outline type="error" class="mb-3" :value="true">
+              Email not sent to SonabStudios&trade;
+            </v-alert>
+          </transition>
           <v-form v-model="valid">
             <v-text-field
               label="Name"
@@ -59,16 +63,19 @@
 </template>
 
 <script>
+import * as config from '../static/config.js'
+
 export default {
   data () {
     return {
-      apiUrl: 'https://i6ycatp01h.execute-api.us-east-1.amazonaws.com/prod/ses-sendmail',
+      showerror: false,
+      showsuccess: false,
       valid: false,
       loader: null,
       loading: false,
       submit: false,
       model: {
-        to: 'sonabstudios@gmail.com',
+        to: config.emailReceiver,
         body: '',
         subject: '',
         fromName: '',
@@ -98,15 +105,25 @@ export default {
       const l = this.loader
       this[l] = !this[l]
       let xhr = new XMLHttpRequest()
-      xhr.open('POST', this.apiUrl)
+      xhr.open('POST', config.apiEndpoint)
       xhr.onreadystatechange = (event) => {
+        let responseUrl = event.target.responseURL
         console.log(event.target.response)
+        if (responseUrl === config.apiEndpoint) {
+          this.showsuccess = true
+          this.showerror = false
+          setTimeout(() => (this.showsuccess = false), 5000)
+        } else {
+          this.showsuccess = false
+          this.showerror = true
+          setTimeout(() => (this.showerror = false), 5000)
+        }
         this[l] = false
         this.loader = null
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
       let msg = JSON.stringify({
-        "to": "sonabstudios@gmail.com",
+        "to": this.model.to,
         "body": this.model.body,
         "subject": this.model.subject,
         "fromname": this.model.fromName,
@@ -114,16 +131,16 @@ export default {
       })
       xhr.send(msg)
     }
-  },
-  watcher: {
-    valid() {
-      this.submit = !this.valid
-    }
   }
-
 }
 
 </script>
 
 <style scoped>
+.fadeout-enter-active, .fadeout-leave-active {
+  transition: opacity 1s;
+}
+.fadeout-enter, .fadeout-leave-to {
+  opacity: 0;
+}
 </style>
