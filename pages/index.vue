@@ -9,6 +9,9 @@
               <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive, Serverless, Scalable APIs and Applications</div>
               <v-layout row justify-center>
                 <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn>
+                <v-btn icon @click="homeActivate()" class="mt-2">
+                  <v-icon :color="homeColor">home</v-icon>
+                </v-btn>
                 <v-btn flat class="mt-2" @click="contactActivate()" :color="contactColor">Contact</v-btn>
               </v-layout>
           </div>
@@ -66,6 +69,7 @@ export default {
     return {
       about: false,
       contact: false,
+      homeColor: '',
       aboutColor: '',
       contactColor: '',
       title: 'Your Logo',
@@ -92,14 +96,23 @@ export default {
     aboutActivate: function () {
       this.contact = false
       this.about = true
+      this.homeColor = ''
       this.aboutColor = 'h_active'
       this.contactColor = ''
     },
     contactActivate: function () {
       this.contact = true
       this.about = false
+      this.homeColor = ''
       this.aboutColor = ''
       this.contactColor = 'h_active'
+    },
+    homeActivate: function () {
+      this.contact = false
+      this.about = false
+      this.homeColor = 'h_active'
+      this.aboutColor = ''
+      this.contactColor = ''
     }
   }
 }
