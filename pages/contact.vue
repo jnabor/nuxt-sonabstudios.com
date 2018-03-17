@@ -2,7 +2,17 @@
   <v-container grid-list-md class="mt-4">
     <v-layout row wrap justify-center>
       <v-flex xs12>
-        <v-card class="pa-4 elevation-0 transparent">
+        <v-card>
+          <v-toolbar color="primary" dark dense>
+            <v-toolbar-title>Send Email</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text class="pa-4">
+          <v-alert outline color="success" dismissible icon="check_circle" :value="true">
+            Email sent to SonabStudios&trade;
+          </v-alert>
+          <v-alert outline color="error" dismissible icon="check_circle" :value="true">
+            Email not sent to SonabStudios&trade;
+          </v-alert>
           <v-form v-model="valid">
             <v-text-field
               label="Name"
@@ -14,6 +24,7 @@
               label="E-mail"
               v-model="model.fromEmail"
               :rules="emailRules"
+              hint="We will reply to this email address"
               required>
             </v-text-field>
             <v-text-field
@@ -31,13 +42,16 @@
             </v-text-field>
             <v-btn
               block
+              :loading="loading"
               color="primary"
               @click.native="onPost()"
-              :disabled="!valid"
+              :disabled="loading"
               class="mt-2 mb-2">
               SEND
+              <span slot="loader">Sending...</span>
             </v-btn>
           </v-form>
+          </v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
@@ -50,6 +64,9 @@ export default {
     return {
       apiUrl: 'https://i6ycatp01h.execute-api.us-east-1.amazonaws.com/prod/ses-sendmail',
       valid: false,
+      loader: null,
+      loading: false,
+      submit: false,
       model: {
         to: 'sonabstudios@gmail.com',
         body: '',
@@ -77,10 +94,15 @@ export default {
   methods: {
     onPost: function () {
       console.log('sending post request to ' + this.apiUrl)
+      this.loader = 'loading'
+      const l = this.loader
+      this[l] = !this[l]
       let xhr = new XMLHttpRequest()
       xhr.open('POST', this.apiUrl)
       xhr.onreadystatechange = (event) => {
         console.log(event.target.response)
+        this[l] = false
+        this.loader = null
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
       let msg = JSON.stringify({
@@ -91,11 +113,11 @@ export default {
         "fromemail": this.model.fromEmail
       })
       xhr.send(msg)
-
-      this.model.body = ''
-      this.model.subject = ''
-      this.model.fromName = ''
-      this.model.fromEmail = ''
+    }
+  },
+  watcher: {
+    valid() {
+      this.submit = !this.valid
     }
   }
 
