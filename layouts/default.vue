@@ -1,35 +1,24 @@
 <template>
 <v-app>
-
   <v-toolbar
     color="grey lighten-1"
     light class="elevation-0" dense>
-
     <v-spacer></v-spacer>
     <v-btn icon small class="white--text" onclick="location.href='https://github.com/sonabstudios';">
       <img class="github" src="/github64.png">
     </v-btn>
   </v-toolbar>
-
   <nuxt />
-
   <v-footer class="pa-2 footer-fixed" dark color="grey lighten-1">
     <v-layout justify-center>
-    <div>Jayson Nabor &copy; 2018</div>
+    <div class="black--text">SonabStudios&trade; Jayson Nabor &copy; 2014</div>
     </v-layout>
   </v-footer>
-
 </v-app>
 </template>
 
 <script>
 export default {
-    methods: {
-      navHome: function () {
-        router.push('/home')
-      }
-    }
-
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

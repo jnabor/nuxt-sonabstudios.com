@@ -1,4 +1,4 @@
-# nuxt-sonabstudios.com
+# sonabstudios.com
 
 > Nuxt version of Sonabstudios.com
 

@@ -69,7 +69,7 @@ export default {
     return {
       about: false,
       contact: false,
-      homeColor: '',
+      homeColor: 'h_active',
       aboutColor: '',
       contactColor: '',
       title: 'Your Logo',
