@@ -17,15 +17,17 @@
               Email not sent to SonabStudios&trade;
             </v-alert>
           </transition>
-          <v-form v-model="valid">
+          <v-form v-model="valid" ref="form">
             <v-text-field
               label="Name"
+              clearable
               v-model="model.fromName"
               :rules="nameRules"
               required>
             </v-text-field>
             <v-text-field
               label="E-mail"
+              clearable
               v-model="model.fromEmail"
               :rules="emailRules"
               hint="We will reply to this email address"
@@ -33,12 +35,14 @@
             </v-text-field>
             <v-text-field
               label="Subject"
+              clearable
               v-model="model.subject"
               :rules="subjectRules"
               required>
             </v-text-field>
             <v-text-field
               label="Message"
+              clearable
               v-model="model.body"
               :rules="messageRules"
               multi-line
@@ -49,7 +53,7 @@
               :loading="loading"
               color="primary"
               @click.native="onPost()"
-              :disabled="loading"
+              :disabled="!submit"
               class="mt-2 mb-2">
               SEND
               <span slot="loader">Sending...</span>
@@ -66,7 +70,7 @@
 import * as config from '../static/config.js'
 
 export default {
-  data () {
+  data: function () {
     return {
       showerror: false,
       showsuccess: false,
@@ -89,18 +93,17 @@ export default {
         (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
       messageRules: [
-        (v) => !!v || 'Message is required',
-        (v) => v.length >= 15 || 'At least 15 characters'
+        (v) => !!v || 'Message is required'
       ],
       subjectRules: [
-        (v) => !!v || 'Subject is required',
-        (v) => v.length >= 5 || 'At least 5 characters'
+        (v) => !!v || 'Subject is required'
       ]
     }
   },
   methods: {
     onPost: function () {
-      console.log('sending post request to ' + this.apiUrl)
+      console.log('sending post request to ' + config.apiEndpoint)
+      this.submit = this.loading
       this.loader = 'loading'
       const l = this.loader
       this[l] = !this[l]
@@ -120,6 +123,12 @@ export default {
         }
         this[l] = false
         this.loader = null
+        this.submit = this.valid
+        this.model.body = ''
+        this.model.subject = ''
+        this.model.fromName = ''
+        this.model.fromEmail = ''
+        this.$refs.form.reset()
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
       let msg = JSON.stringify({
@@ -130,6 +139,11 @@ export default {
         "fromemail": this.model.fromEmail
       })
       xhr.send(msg)
+    }
+  },
+  watch: {
+    valid () {
+      this.submit = this.valid
     }
   }
 }

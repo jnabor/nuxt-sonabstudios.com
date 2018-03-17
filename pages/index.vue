@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-content id="gradient">
     <v-container>
       <v-layout row wrap justify-center>
         <v-flex xs12 md5>
@@ -120,9 +120,10 @@ li {
 a {
   color: #42b983;
 }
-
 .logo {
   max-height: 150px;
 }
-
+#gradient {
+  background: linear-gradient(135deg, #FAFAFA, #E0E0E0)
+}
 </style>
