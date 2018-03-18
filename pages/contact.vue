@@ -131,9 +131,12 @@ export default {
         this.$refs.form.reset()
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
+	  let message = this.model.body
+	  // eslint-disable-next-line
+      message = message.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t")
       let msg = JSON.stringify({
         "to": this.model.to,
-        "body": this.model.body,
+        "body": message,
         "subject": this.model.subject,
         "fromname": this.model.fromName,
         "fromemail": this.model.fromEmail
