@@ -10,7 +10,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "deploy": "aws s3 cp dist s3://sonabstudios.com/ --recursive"
   },
   "dependencies": {
     "nuxt": "^1.4.0",
