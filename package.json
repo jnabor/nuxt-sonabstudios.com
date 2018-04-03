@@ -1,5 +1,5 @@
 {
-  "name": "sonabstudios.com",
+  "name": "sonabstudios",
   "version": "1.0.0",
   "description": "Nuxt version of Sonabstudios.com",
   "author": "Jayson Nabor",
@@ -16,7 +16,7 @@
   "dependencies": {
     "nuxt": "^1.4.0",
     "vue": "^2.5.16",
-    "vuetify": "^1.0.8"
+    "vuetify": "^1.0.12"
   },
   "devDependencies": {
     "cross-env": "^5.0.1",

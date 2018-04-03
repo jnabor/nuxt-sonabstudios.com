@@ -17,7 +17,7 @@
               Email not sent to SonabStudios&trade;
             </v-alert>
           </transition>
-          <v-form v-model="valid" ref="form">
+          <v-form v-model="valid" ref="form" lazy-validation>
             <v-text-field
               label="Name"
               clearable
@@ -86,17 +86,17 @@ export default {
         fromEmail: ''
       },
       nameRules: [
-        (v) => !!v || 'Your name is required'
+        v => !!v || 'Your name is required'
       ],
       emailRules: [
-        (v) => !!v || 'Your email is required',
-        (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        v => !!v || 'Your email is required',
+        v => /(.+)@(.+){2,}\.(.+){2,}/.test(v) || 'E-mail must be valid'
       ],
       messageRules: [
-        (v) => !!v || 'Message is required'
+        v => !!v || 'Message is required'
       ],
       subjectRules: [
-        (v) => !!v || 'Subject is required'
+        v => !!v || 'Subject is required'
       ]
     }
   },
