@@ -29,7 +29,7 @@
               label="E-mail"
               clearable
               v-model="model.fromEmail"
-              :rules="emailRules"
+              :rules="[emailrules.required, emailrules.email]"
               hint="We will reply to this email address"
               required>
             </v-text-field>
@@ -88,10 +88,13 @@ export default {
       nameRules: [
         v => !!v || 'Your name is required'
       ],
-      emailRules: [
-        v => !!v || 'Your email is required',
-        v => /(.+)@(.+){2,}\.(.+){2,}/.test(v) || 'E-mail must be valid'
-      ],
+      emailrules: {
+        required: (value) => !!value || 'E-mail is required',
+        email: (value) => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'E-mail must be valid'
+        }
+      },
       messageRules: [
         v => !!v || 'Message is required'
       ],
