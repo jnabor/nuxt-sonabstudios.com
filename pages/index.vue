@@ -5,10 +5,10 @@
         <v-flex xs12 md5>
           <div class="text-xs-center">
             <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png">
-              <div class="headline"><span style="font-weight:bold">Sonab</span>Studios&trade;</div>
+              <div class="headline"><span style="font-weight:bold">SonabStudios</span>&trade;</div>
               <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive, Serverless, Scalable APIs and Applications</div>
               <v-layout row justify-center>
-                <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn>
+                <!-- <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn> -->
                 <v-btn icon @click="homeActivate()" class="mt-2">
                   <v-icon :color="homeColor">home</v-icon>
                 </v-btn>
@@ -39,17 +39,8 @@
                   {{ post.content }}
               </v-card-text>
               <v-card-actions>
-                <v-btn icon class="red--text">
-                  <v-icon medium>fa-reddit</v-icon>
-                </v-btn>
-                <v-btn icon class="light-blue--text">
-                  <v-icon medium>fa-twitter</v-icon>
-                </v-btn>
-                <v-btn icon class="blue--text text--darken-4">
-                  <v-icon medium>fa-facebook</v-icon>
-                </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn flat class="blue--text">Read More</v-btn>
+                <!-- <v-btn flat class="blue--text">Read More</v-btn> -->
               </v-card-actions>
             </v-card>
           </div>
@@ -75,9 +66,19 @@ export default {
       title: 'Your Logo',
       posts: [
         {
-          title: 'Progressive Web Applications',
-          content: 'Loads instantly and never shows the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
+          title: 'Mobile and PWA',
+          content: 'Progressive Web Applications. Loads instantly and never shows the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
           imgUrl: '/img/progressive.jpeg'
+        },
+        {
+          title: 'Serverless Architecture',
+          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server side.',
+          imgUrl: '/img/serverless.jpg'
+        },
+        {
+          title: 'Blockchain',
+          content: 'A system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.',
+          imgUrl: '/img/blockchain.jpg'
         },
         {
           title: 'Internet of Things',

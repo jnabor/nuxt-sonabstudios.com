@@ -1,9 +1,9 @@
 <template>
-  <v-container grid-list-md class="mt-4">
+  <v-container grid-list-md class="mt-4 ml-0 mr-0 pa-0">
     <v-layout row wrap justify-center>
       <v-flex xs12>
         <v-card>
-          <v-toolbar color="primary" dark dense>
+          <v-toolbar class="elevation-0" color="grey darken-2" dark dense>
             <v-toolbar-title>Send Email</v-toolbar-title>
           </v-toolbar>
           <v-card-text class="pa-4">
@@ -89,10 +89,10 @@ export default {
         v => !!v || 'Your name is required'
       ],
       emailrules: {
-        required: (value) => !!value || 'E-mail is required',
-        email: (value) => {
+        required: (v) => !!v || 'E-mail is required',
+        email: (v) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'E-mail must be valid'
+          return pattern.test(v) || 'E-mail must be valid'
         }
       },
       messageRules: [
