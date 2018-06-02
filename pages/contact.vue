@@ -17,7 +17,7 @@
               Email not sent to SonabStudios&trade;
             </v-alert>
           </transition>
-          <v-form v-model="valid" ref="form" lazy-validation>
+          <v-form v-model="valid" ref="form">
             <v-text-field
               label="Name"
               clearable

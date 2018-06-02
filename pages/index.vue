@@ -67,27 +67,27 @@ export default {
       posts: [
         {
           title: 'Mobile and PWA',
-          content: 'Progressive Web Applications. Loads instantly and never shows the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
+          content: 'Native Mobile Apps that run anywhere. Progressive Web Apps that load instantly and never show the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
           imgUrl: '/img/progressive.jpeg'
         },
         {
-          title: 'Serverless Architecture',
-          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server side.',
-          imgUrl: '/img/serverless.jpg'
-        },
-        {
-          title: 'Blockchain',
-          content: 'A system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.',
-          imgUrl: '/img/blockchain.jpg'
-        },
-        {
           title: 'Internet of Things',
-          content: 'A system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction.',
+          content: 'Build smart, connected devices for a wide variety of consumer, retail, and industrial applications using existing open-source development tools, APIs, and resources along with new APIs that provide low level I/O and libraries for common components like temperature sensors, display controllers, etc.',
           imgUrl: '/img/raspberry.jpeg'
         },
         {
+          title: 'Blockchain',
+          content: 'Using cryptography to keep exchanges secure, blockchain provides a decentralized database, or “digital ledger”, of transactions that everyone on the network can see. This network is essentially a chain of computers that must all approve an exchange before it can be verified and recorded.',
+          imgUrl: '/img/blockchain.jpg'
+        },
+        {
+          title: 'Serverless Architecture',
+          content: 'Focus on your application and business value, not your infrastructure. You don’t have to provision infrastructure or worry about scale. Serverless backends expand and contract with demand. It cuts time to market in half and reduces IT operational costs.',
+          imgUrl: '/img/serverless.jpg'
+        },
+        {
           title: 'Technology Stack',
-          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server side.',
+          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server.',
           imgUrl: '/img/techstack.jpeg'
         }
       ]
