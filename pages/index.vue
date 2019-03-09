@@ -5,28 +5,34 @@
         <v-flex xs12 md5>
           <div class="text-xs-center">
             <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png">
-              <div class="headline"><span style="font-weight:bold">SonabStudios</span>&trade;</div>
-              <div class="subheading text-xs-center grey--text pt-2 pb-4">Progressive, Serverless, Scalable APIs and Applications</div>
-              <v-layout row justify-center>
-                <!-- <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn> -->
-                <v-btn icon @click="homeActivate()" class="mt-2">
-                  <v-icon :color="homeColor">home</v-icon>
-                </v-btn>
-                <v-btn flat class="mt-2" @click="contactActivate()" :color="contactColor">Contact</v-btn>
-              </v-layout>
+            <div class="headline">
+              <span style="font-weight:bold">SonabStudios</span>&trade;
+            </div>
+            <div
+              class="subheading text-xs-center grey--text pt-2 pb-4"
+            >
+              Progressive, Serverless, Scalable APIs and Applications
+            </div>
+            <v-layout row justify-center>
+              <!-- <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn> -->
+              <v-btn @click="homeActivate()" icon class="mt-2">
+                <v-icon :color="homeColor">
+                  home
+                </v-icon>
+              </v-btn>
+              <v-btn @click="contactActivate()" :color="contactColor" flat class="mt-2">
+                Contact
+              </v-btn>
+            </v-layout>
           </div>
           <div v-if="contact">
-            <app-contact>
-            </app-contact>
+            <app-contact />
           </div>
         </v-flex>
         <v-flex xs12 md5 offset-md1>
           <div v-for="post in posts" :key="post.title">
-            <v-card class="my-3" hover >
-              <v-card-media
-                class="white--text"
-                height="170px"
-                :src="post.imgUrl">
+            <v-card class="my-3" hover>
+              <v-card-media :src="post.imgUrl" class="white--text" height="170px">
                 <v-container fill-height fluid>
                   <v-layout>
                     <v-flex xs12 align-end d-flex>
@@ -35,11 +41,9 @@
                   </v-layout>
                 </v-container>
               </v-card-media>
-              <v-card-text>
-                  {{ post.content }}
-              </v-card-text>
+              <v-card-text>{{ post.content }}</v-card-text>
               <v-card-actions>
-                <v-spacer></v-spacer>
+                <v-spacer />
                 <!-- <v-btn flat class="blue--text">Read More</v-btn> -->
               </v-card-actions>
             </v-card>
@@ -56,7 +60,7 @@ export default {
   components: {
     'app-contact': contact
   },
-  data () {
+  data() {
     return {
       about: false,
       contact: false,
@@ -67,27 +71,20 @@ export default {
       posts: [
         {
           title: 'Mobile and PWA',
-          content: 'Native Mobile Apps that run anywhere. Progressive Web Apps that load instantly and never show the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
+          content:
+            'Native Mobile Apps that run anywhere. Progressive Web Apps that load instantly and never show the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
           imgUrl: '/img/progressive.jpeg'
         },
         {
-          title: 'Internet of Things',
-          content: 'Build smart, connected devices for a wide variety of consumer, retail, and industrial applications using existing open-source development tools, APIs, and resources along with new APIs that provide low level I/O and libraries for common components like temperature sensors, display controllers, etc.',
-          imgUrl: '/img/raspberry.jpeg'
-        },
-        {
-          title: 'Blockchain',
-          content: 'Using cryptography to keep exchanges secure, blockchain provides a decentralized database, or “digital ledger”, of transactions that everyone on the network can see. This network is essentially a chain of computers that must all approve an exchange before it can be verified and recorded.',
-          imgUrl: '/img/blockchain.jpg'
-        },
-        {
           title: 'Serverless Architecture',
-          content: 'Focus on your application and business value, not your infrastructure. You don’t have to provision infrastructure or worry about scale. Serverless backends expand and contract with demand. It cuts time to market in half and reduces IT operational costs.',
+          content:
+            'Focus on your application and business value, not your infrastructure. You don�t have to provision infrastructure or worry about scale. Serverless backends expand and contract with demand. It cuts time to market in half and reduces IT operational costs.',
           imgUrl: '/img/serverless.jpg'
         },
         {
           title: 'Technology Stack',
-          content: 'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server.',
+          content:
+            'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server.',
           imgUrl: '/img/techstack.jpeg'
         }
       ]
@@ -120,7 +117,8 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
@@ -138,6 +136,6 @@ a {
   max-height: 150px;
 }
 #gradient {
-  background: linear-gradient(135deg, #FAFAFA, #E0E0E0)
+  background: linear-gradient(135deg, #fafafa, #e0e0e0);
 }
 </style>

@@ -7,58 +7,70 @@
             <v-toolbar-title>Send Email</v-toolbar-title>
           </v-toolbar>
           <v-card-text class="pa-4">
-          <transition appear name="fadeout">
-            <v-alert v-if="showsuccess" outline type="success" class="mb-3" :value="true">
-              Email sent to SonabStudios&trade;
-            </v-alert>
-          </transition>
-          <transition appear name="fadeout">
-            <v-alert v-if="showerror" outline type="error" class="mb-3" :value="true">
-              Email not sent to SonabStudios&trade;
-            </v-alert>
-          </transition>
-          <v-form v-model="valid" ref="form">
-            <v-text-field
-              label="Name"
-              clearable
-              v-model="model.fromName"
-              :rules="nameRules"
-              required>
-            </v-text-field>
-            <v-text-field
-              label="E-mail"
-              clearable
-              v-model="model.fromEmail"
-              :rules="[emailrules.required, emailrules.email]"
-              hint="We will reply to this email address"
-              required>
-            </v-text-field>
-            <v-text-field
-              label="Subject"
-              clearable
-              v-model="model.subject"
-              :rules="subjectRules"
-              required>
-            </v-text-field>
-            <v-text-field
-              label="Message"
-              clearable
-              v-model="model.body"
-              :rules="messageRules"
-              multi-line
-              required>
-            </v-text-field>
-            <v-btn
-              block
-              :loading="loading"
-              color="primary"
-              @click.native="onPost()"
-              :disabled="!submit"
-              class="mt-2 mb-2">
-              SEND
-              <span slot="loader">Sending...</span>
-            </v-btn>
-          </v-form>
+            <transition appear name="fadeout">
+              <v-alert
+                v-if="showsuccess"
+                :value="true"
+                outline
+                type="success"
+                class="mb-3"
+              >
+                Email sent to SonabStudios&trade;
+              </v-alert>
+            </transition>
+            <transition appear name="fadeout">
+              <v-alert
+                v-if="showerror"
+                :value="true"
+                type="error"
+                outline
+                class="mb-3"
+              >
+                Email not sent to SonabStudios&trade;
+              </v-alert>
+            </transition>
+            <v-form ref="form" v-model="valid">
+              <v-text-field
+                v-model="model.fromName"
+                :rules="nameRules"
+                label="Name"
+                clearable
+                required
+              />
+              <v-text-field
+                v-model="model.fromEmail"
+                :rules="[emailrules.required, emailrules.email]"
+                label="E-mail"
+                hint="We will reply to this email address"
+                clearable
+                required
+              />
+              <v-text-field
+                v-model="model.subject"
+                :rules="subjectRules"
+                label="Subject"
+                clearable
+                required
+              />
+              <v-textarea
+                v-model="model.body"
+                :rules="messageRules"
+                label="Message"
+                clearable
+                required
+              />
+              <v-btn
+                :loading="loading"
+                @click.native="onPost()"
+                :disabled="!submit"
+                block
+                color="primary"
+                class="mt-2 mb-2"
+              >
+                SEND
+                <span slot="loader">Sending...</span>
+              </v-btn>
+            </v-form>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -85,22 +97,21 @@ export default {
         fromName: '',
         fromEmail: ''
       },
-      nameRules: [
-        v => !!v || 'Your name is required'
-      ],
+      nameRules: [v => !!v || 'Your name is required'],
       emailrules: {
-        required: (v) => !!v || 'E-mail is required',
+        required: v => !!v || 'E-mail is required',
         email: (v) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           return pattern.test(v) || 'E-mail must be valid'
         }
       },
-      messageRules: [
-        v => !!v || 'Message is required'
-      ],
-      subjectRules: [
-        v => !!v || 'Subject is required'
-      ]
+      messageRules: [v => !!v || 'Message is required'],
+      subjectRules: [v => !!v || 'Subject is required']
+    }
+  },
+  watch: {
+    valid() {
+      this.submit = this.valid
     }
   },
   methods: {
@@ -110,10 +121,10 @@ export default {
       this.loader = 'loading'
       const l = this.loader
       this[l] = !this[l]
-      let xhr = new XMLHttpRequest()
+      const xhr = new XMLHttpRequest()
       xhr.open('POST', config.apiEndpoint)
       xhr.onreadystatechange = (event) => {
-        let responseUrl = event.target.responseURL
+        const responseUrl = event.target.responseURL
         console.log(event.target.response)
         if (responseUrl === config.apiEndpoint) {
           this.showsuccess = true
@@ -134,33 +145,32 @@ export default {
         this.$refs.form.reset()
       }
       xhr.setRequestHeader('Content-Type', 'application/json')
-	  let message = this.model.body
-	  // eslint-disable-next-line
-      message = message.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t")
-      let msg = JSON.stringify({
-        "to": this.model.to,
-        "body": message,
-        "subject": this.model.subject,
-        "fromname": this.model.fromName,
-        "fromemail": this.model.fromEmail
+      let message = this.model.body
+      // eslint-disable-next-line
+      message = message
+        .replace(/\n/g, '\\\\n')
+        .replace(/\r/g, '\\\\r')
+        .replace(/\t/g, '\\\\t')
+      const msg = JSON.stringify({
+        to: this.model.to,
+        body: message,
+        subject: this.model.subject,
+        fromname: this.model.fromName,
+        fromemail: this.model.fromEmail
       })
       xhr.send(msg)
     }
-  },
-  watch: {
-    valid () {
-      this.submit = this.valid
-    }
   }
 }
-
 </script>
 
 <style scoped>
-.fadeout-enter-active, .fadeout-leave-active {
+.fadeout-enter-active,
+.fadeout-leave-active {
   transition: opacity 1s;
 }
-.fadeout-enter, .fadeout-leave-to {
+.fadeout-enter,
+.fadeout-leave-to {
   opacity: 0;
 }
 </style>

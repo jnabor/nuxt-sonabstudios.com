@@ -1,6 +1,6 @@
-# sonabstudios.com
+# sonabstudios
 
-> Nuxt version of Sonabstudios.com
+> sonabstudios.com
 
 ## Build Setup
 
