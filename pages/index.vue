@@ -55,65 +55,64 @@
 </template>
 
 <script>
-import contact from './contact'
+import contact from "./contact";
 export default {
   components: {
-    'app-contact': contact
+    "app-contact": contact
   },
   data() {
     return {
       about: false,
       contact: false,
-      homeColor: 'h_active',
-      aboutColor: '',
-      contactColor: '',
-      title: 'Your Logo',
+      homeColor: "h_active",
+      aboutColor: "",
+      contactColor: "",
+      title: "Your Logo",
       posts: [
         {
-          title: 'Mobile and PWA',
+          title: "Mobile and PWA",
           content:
-            'Native Mobile Apps that run anywhere. Progressive Web Apps that load instantly and never show the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ',
-          imgUrl: '/img/progressive.jpeg'
+            "Native Mobile Apps that run anywhere. Progressive Web Apps that load instantly and never show the downasaur, even in uncertain network conditions. Responds quickly to user interactions with silky smooth animations and no janky scrolling. Feels like a natural app on the device, with an immersive user experience. ",
+          imgUrl: "/img/progressive.jpeg"
         },
         {
-          title: 'Serverless Architecture',
-          content:
-            'Focus on your application and business value, not your infrastructure. You don�t have to provision infrastructure or worry about scale. Serverless backends expand and contract with demand. It cuts time to market in half and reduces IT operational costs.',
-          imgUrl: '/img/serverless.jpg'
+          title: "Serverless Architecture",
+          content: `Focus on your application and business value, not your infrastructure. You don't have to provision infrastructure or worry about scale. Serverless backends expand and contract with demand. It cuts time to market in half and reduces IT operational costs.`,
+          imgUrl: "/img/serverless.jpg"
         },
         {
-          title: 'Technology Stack',
+          title: "Technology Stack",
           content:
-            'Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server.',
-          imgUrl: '/img/techstack.jpeg'
+            "Fast scalable and flexible technology stack and array of services for all applications that need consistent, single-digit millisecond latency. Cloud services and APIs that are fully managed for your backend. Reactive user interfaces and single-page applications pre-rendered on the server.",
+          imgUrl: "/img/techstack.jpeg"
         }
       ]
-    }
+    };
   },
   methods: {
-    aboutActivate: function () {
-      this.contact = false
-      this.about = true
-      this.homeColor = ''
-      this.aboutColor = 'h_active'
-      this.contactColor = ''
+    aboutActivate: function() {
+      this.contact = false;
+      this.about = true;
+      this.homeColor = "";
+      this.aboutColor = "h_active";
+      this.contactColor = "";
     },
-    contactActivate: function () {
-      this.contact = true
-      this.about = false
-      this.homeColor = ''
-      this.aboutColor = ''
-      this.contactColor = 'h_active'
+    contactActivate: function() {
+      this.contact = true;
+      this.about = false;
+      this.homeColor = "";
+      this.aboutColor = "";
+      this.contactColor = "h_active";
     },
-    homeActivate: function () {
-      this.contact = false
-      this.about = false
-      this.homeColor = 'h_active'
-      this.aboutColor = ''
-      this.contactColor = ''
+    homeActivate: function() {
+      this.contact = false;
+      this.about = false;
+      this.homeColor = "h_active";
+      this.aboutColor = "";
+      this.contactColor = "";
     }
   }
-}
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

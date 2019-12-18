@@ -1,13 +1,5 @@
 <template>
   <v-app>
-    <v-toolbar color="grey lighten-1" light class="elevation-0" dense>
-      <!--
-      <v-spacer></v-spacer>
-      <v-btn icon small class="white--text" onclick="location.href='https://github.com/sonabstudios';">
-        <img class="github" src="/github64.png">
-      </v-btn>
-      -->
-    </v-toolbar>
     <nuxt />
     <v-footer class="pa-2 footer-fixed" dark color="grey lighten-1">
       <v-layout justify-center>
