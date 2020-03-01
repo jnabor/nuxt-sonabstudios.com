@@ -14,9 +14,7 @@
                 outline
                 type="success"
                 class="mb-3"
-              >
-                Email sent to SonabStudios&trade;
-              </v-alert>
+              >Email sent to SonabStudios&trade;</v-alert>
             </transition>
             <transition appear name="fadeout">
               <v-alert
@@ -25,9 +23,7 @@
                 type="error"
                 outline
                 class="mb-3"
-              >
-                Email not sent to SonabStudios&trade;
-              </v-alert>
+              >Email not sent to SonabStudios&trade;</v-alert>
             </transition>
             <v-form ref="form" v-model="valid">
               <v-text-field
@@ -79,10 +75,10 @@
 </template>
 
 <script>
-import * as config from '../static/config.js'
+import * as config from "../static/config.js";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       showerror: false,
       showsuccess: false,
@@ -92,76 +88,77 @@ export default {
       submit: false,
       model: {
         to: config.emailReceiver,
-        body: '',
-        subject: '',
-        fromName: '',
-        fromEmail: ''
+        body: "",
+        subject: "",
+        fromName: "",
+        fromEmail: ""
       },
-      nameRules: [v => !!v || 'Your name is required'],
+      nameRules: [v => !!v || "Your name is required"],
       emailrules: {
-        required: v => !!v || 'E-mail is required',
-        email: (v) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(v) || 'E-mail must be valid'
+        required: v => !!v || "E-mail is required",
+        email: v => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(v) || "E-mail must be valid";
         }
       },
-      messageRules: [v => !!v || 'Message is required'],
-      subjectRules: [v => !!v || 'Subject is required']
-    }
+      messageRules: [v => !!v || "Message is required"],
+      subjectRules: [v => !!v || "Subject is required"]
+    };
   },
   watch: {
     valid() {
-      this.submit = this.valid
+      this.submit = this.valid;
     }
   },
   methods: {
-    onPost: function () {
-      console.log('sending post request to ' + config.apiEndpoint)
-      this.submit = this.loading
-      this.loader = 'loading'
-      const l = this.loader
-      this[l] = !this[l]
-      const xhr = new XMLHttpRequest()
-      xhr.open('POST', config.apiEndpoint)
-      xhr.onreadystatechange = (event) => {
-        const responseUrl = event.target.responseURL
-        console.log(event.target.response)
+    onPost: function() {
+      console.log("sending post request to " + config.apiEndpoint);
+      this.submit = this.loading;
+      this.loader = "loading";
+      const l = this.loader;
+      this[l] = !this[l];
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", config.apiEndpoint);
+      xhr.onreadystatechange = event => {
+        const responseUrl = event.target.responseURL;
+        console.log(event.target.response);
         if (responseUrl === config.apiEndpoint) {
-          this.showsuccess = true
-          this.showerror = false
-          setTimeout(() => (this.showsuccess = false), 5000)
+          this.showsuccess = true;
+          this.showerror = false;
+          setTimeout(() => (this.showsuccess = false), 5000);
         } else {
-          this.showsuccess = false
-          this.showerror = true
-          setTimeout(() => (this.showerror = false), 5000)
+          this.showsuccess = false;
+          this.showerror = true;
+          setTimeout(() => (this.showerror = false), 5000);
         }
-        this[l] = false
-        this.loader = null
-        this.submit = this.valid
-        this.model.body = ''
-        this.model.subject = ''
-        this.model.fromName = ''
-        this.model.fromEmail = ''
-        this.$refs.form.reset()
-      }
-      xhr.setRequestHeader('Content-Type', 'application/json')
-      let message = this.model.body
+        this[l] = false;
+        this.loader = null;
+        this.submit = this.valid;
+        this.model.body = "";
+        this.model.subject = "";
+        this.model.fromName = "";
+        this.model.fromEmail = "";
+        this.$refs.form.reset();
+      };
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("x-api-key", config.apiKey);
+      let message = this.model.body;
       // eslint-disable-next-line
       message = message
-        .replace(/\n/g, '\\\\n')
-        .replace(/\r/g, '\\\\r')
-        .replace(/\t/g, '\\\\t')
+        .replace(/\n/g, "\\\\n")
+        .replace(/\r/g, "\\\\r")
+        .replace(/\t/g, "\\\\t");
       const msg = JSON.stringify({
         to: this.model.to,
         body: message,
         subject: this.model.subject,
         fromname: this.model.fromName,
         fromemail: this.model.fromEmail
-      })
-      xhr.send(msg)
+      });
+      xhr.send(msg);
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -8,7 +8,7 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: ['@nuxtjs', 'plugin:nuxt/recommended'],
-  plugins: ['prettier'],
+  plugins: [],
   // add your custom rules here
   rules: {
     semi: [2, 'never'],
