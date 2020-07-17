@@ -57,17 +57,19 @@
                 clearable
                 required
               />
-              <v-btn
-                :loading="loading"
-                @click.native="onPost()"
-                :disabled="!submit"
-                block
-                color="primary"
-                class="mt-2 mb-2"
-              >
-                SEND
-                <span slot="loader">Sending...</span>
-              </v-btn>
+              <vue-recaptcha sitekey="config.captchaKey">
+                <v-btn
+                  :loading="loading"
+                  @click.native="onPost()"
+                  :disabled="!submit"
+                  block
+                  color="primary"
+                  class="mt-2 mb-2"
+                >
+                  SEND
+                  <span slot="loader">Sending...</span>
+                </v-btn>
+              </vue-recaptcha>
             </v-form>
           </v-card-text>
         </v-card>
@@ -78,8 +80,21 @@
 
 <script>
 import * as config from '../static/config.js'
+import VueRecaptcha from 'vue-recaptcha'
 
 export default {
+  head() {
+    return {
+      script: [
+        {
+          src:
+            'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+          defer: true,
+          async: true,
+        },
+      ],
+    }
+  },
   data: function () {
     return {
       showerror: false,
@@ -112,6 +127,7 @@ export default {
       this.submit = this.valid
     },
   },
+  components: { VueRecaptcha },
   methods: {
     onPost: function () {
       console.log('sending post request to ' + config.apiEndpoint)
