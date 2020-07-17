@@ -162,14 +162,14 @@ export default {
       xhr.setRequestHeader('x-api-key', config.apiKey)
       let message = this.model.body
       // eslint-disable-next-line
-      message = message
+      let myMessage = message
         .replace(/\n/g, '\\\\n')
         .replace(/\r/g, '\\\\r')
         .replace(/\t/g, '\\\\t')
         .replace(`"`, `\\"`)
       const msg = JSON.stringify({
         to: this.model.to,
-        body: message,
+        body: `${myMessage}`,
         subject: this.model.subject,
         fromname: this.model.fromName,
         fromemail: this.model.fromEmail,
