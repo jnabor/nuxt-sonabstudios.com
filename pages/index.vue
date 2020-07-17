@@ -38,7 +38,7 @@
               <v-card-media
                 :src="post.imgUrl"
                 class="white--text"
-                height="170px"
+                height="240px"
               >
                 <v-container fill-height fluid>
                   <v-layout>
@@ -49,10 +49,6 @@
                 </v-container>
               </v-card-media>
               <v-card-text>{{ post.content }}</v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <!-- <v-btn flat class="blue--text">Read More</v-btn> -->
-              </v-card-actions>
             </v-card>
           </div>
         </v-flex>
