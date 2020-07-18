@@ -57,7 +57,7 @@
                 clearable
                 required
               />
-              <vue-recaptcha sitekey="config.captchaKey">
+              <vue-recaptcha sitekey="6LdVn7IZAAAAAJ6bsjRBIm-XNPT2xdalW5wkwaUW">
                 <v-btn
                   :loading="loading"
                   @click.native="onPost()"
