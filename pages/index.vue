@@ -9,7 +9,7 @@
               <span style="font-weight: bold;">SonabStudios</span>&trade;
             </div>
             <div class="subheading text-xs-center grey--text pt-2 pb-4">
-              Progressive, Serverless, Scalable APIs and Applications
+              Data Automation, Analytics and Visualization
             </div>
             <v-layout row justify-center>
               <!-- <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn> -->
