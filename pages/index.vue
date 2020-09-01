@@ -6,17 +6,15 @@
           <div class="text-xs-center">
             <img class="elevation-0 mt-2 mb-3 logo" src="sonabstudios.png" />
             <div class="headline">
-              <span style="font-weight: bold;">SonabStudios</span>&trade;
+              <span style="font-weight: bold">SonabStudios</span>&trade;
             </div>
             <div class="subheading text-xs-center grey--text pt-2 pb-4">
-              Data Automation, Analytics and Visualization
+              Full Stack, DevOps, IaC, CI/CD
             </div>
             <v-layout row justify-center>
               <!-- <v-btn flat class="mt-2" @click="aboutActivate()" :color="aboutColor" >About</v-btn> -->
               <v-btn @click="homeActivate()" icon class="mt-2">
-                <v-icon :color="homeColor">
-                  home
-                </v-icon>
+                <v-icon :color="homeColor"> home </v-icon>
               </v-btn>
               <v-btn
                 @click="contactActivate()"
